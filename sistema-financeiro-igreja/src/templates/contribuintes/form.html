@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ "Editar" if contribuinte else "Novo" }} contribuinte{% endblock %}
+
+{% block content %}
+<h1>{{ "Editar" if contribuinte else "Novo" }} contribuinte</h1>
+
+<form method="post" class="col-md-6">
+    <div class="mb-3">
+        <label class="form-label" for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" class="form-control" value="{{ valores.get('nome', '') }}" required autofocus>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="bairro">Bairro</label>
+        <input type="text" id="bairro" name="bairro" class="form-control" value="{{ valores.get('bairro', '') }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="data_primeira_contribuicao">Data da primeira contribuição</label>
+        <input type="text" id="data_primeira_contribuicao" name="data_primeira_contribuicao" class="form-control"
+               placeholder="DD/MM/AAAA" value="{{ valores.get('data_primeira_contribuicao', '') }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{{ url_for('contribuinte.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Remover contribuinte{% endblock %}
+
+{% block content %}
+<h1>Remover contribuinte</h1>
+<p>Tem certeza que deseja remover <strong>{{ contribuinte.nome }}</strong>? Essa ação não pode ser desfeita.</p>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Sim, remover</button>
+    <a href="{{ url_for('contribuinte.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Remover lançamento{% endblock %}
+
+{% block content %}
+<h1>Remover lançamento</h1>
+<p>
+    Tem certeza que deseja remover o lançamento de
+    <strong>R$ {{ "%.2f"|format(lancamento.valor)|replace(".", ",") }}</strong>
+    ({{ lancamento.categoria.nome }}, {{ lancamento.data.strftime("%d/%m/%Y") }})?
+    Essa ação não pode ser desfeita.
+</p>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Sim, remover</button>
+    <a href="{{ url_for('lancamento.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}

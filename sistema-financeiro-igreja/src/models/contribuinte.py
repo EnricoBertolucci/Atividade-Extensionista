@@ -26,5 +26,10 @@ class Contribuinte(db.Model):
             meses += 12
         return anos, meses
 
+    @property
+    def tempo_contribuicao_formatado(self):
+        anos, meses = self.tempo_contribuicao
+        return f"{anos} ano(s) e {meses} mês(es)"
+
     def __repr__(self):
         return f"<Contribuinte {self.nome}>"

@@ -7,6 +7,9 @@ from flask_login import login_required
 from src.auth import login_manager
 from src.models import db
 from src.routes.auth import auth_bp
+from src.routes.categoria import categoria_bp
+from src.routes.contribuinte import contribuinte_bp
+from src.routes.lancamento import lancamento_bp
 from src.seed import seed_categorias_padrao
 
 BASE_DIR = os.path.dirname(__file__)
@@ -25,6 +28,9 @@ db.init_app(app)
 login_manager.init_app(app)
 
 app.register_blueprint(auth_bp)
+app.register_blueprint(contribuinte_bp)
+app.register_blueprint(categoria_bp)
+app.register_blueprint(lancamento_bp)
 
 with app.app_context():
     db.create_all()

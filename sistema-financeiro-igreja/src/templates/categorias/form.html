@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ "Editar" if categoria else "Nova" }} categoria{% endblock %}
+
+{% block content %}
+<h1>{{ "Editar" if categoria else "Nova" }} categoria</h1>
+
+<form method="post" class="col-md-6">
+    <div class="mb-3">
+        <label class="form-label" for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" class="form-control" value="{{ valores.get('nome', '') }}" required autofocus>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="tipo">Tipo</label>
+        <select id="tipo" name="tipo" class="form-select" required>
+            <option value="">Selecione...</option>
+            <option value="entrada" {% if valores.get('tipo') == 'entrada' %}selected{% endif %}>Entrada</option>
+            <option value="saida" {% if valores.get('tipo') == 'saida' %}selected{% endif %}>Saída</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{{ url_for('categoria.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}

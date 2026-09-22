@@ -16,7 +16,9 @@ class Lancamento(db.Model):
     criado_em = db.Column(db.DateTime, default=datetime.utcnow)
 
     categoria_id = db.Column(db.Integer, db.ForeignKey("categorias.id"), nullable=False)
-    contribuinte_id = db.Column(db.Integer, db.ForeignKey("contribuintes.id"), nullable=True)
+    contribuinte_id = db.Column(
+        db.Integer, db.ForeignKey("contribuintes.id", ondelete="SET NULL"), nullable=True
+    )
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=True)
 
     categoria = db.relationship("Categoria", back_populates="lancamentos")

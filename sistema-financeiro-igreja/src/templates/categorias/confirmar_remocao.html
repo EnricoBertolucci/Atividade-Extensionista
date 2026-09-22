@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Remover categoria{% endblock %}
+
+{% block content %}
+<h1>Remover categoria</h1>
+<p>Tem certeza que deseja remover <strong>{{ categoria.nome }}</strong>?</p>
+
+{% if categoria.lancamentos %}
+<p class="text-danger">Não é possível remover: existem {{ categoria.lancamentos|length }} lançamento(s) usando essa categoria.</p>
+<a href="{{ url_for('categoria.listar') }}" class="btn btn-outline-secondary">Voltar</a>
+{% else %}
+<form method="post">
+    <button type="submit" class="btn btn-danger">Sim, remover</button>
+    <a href="{{ url_for('categoria.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endif %}
+{% endblock %}
