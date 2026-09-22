@@ -1,0 +1,6 @@
+# Pastas fora do escopo do repositório (protótipos antigos e planejamento)
+/Projeto/
+/.temp/
+
+# O restante das regras de ignore (venv, banco local, cache) fica no
+# .gitignore específico dentro de sistema-financeiro-igreja/
