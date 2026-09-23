@@ -24,6 +24,15 @@ python app.py
 
 Acesse http://localhost:5000
 
+## Como rodar os testes
+
+```powershell
+pip install -r requirements.txt
+pytest
+```
+
+Os testes usam um banco SQLite em memória, isolado do banco de produção (`database/app.db`).
+
 ## Estrutura do projeto
 
 ```
