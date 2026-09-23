@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Ajuda — Sistema Financeiro da Igreja{% endblock %}
+
+{% block content %}
+<h1 class="mb-1">Ajuda</h1>
+<p class="text-muted">Passo a passo das tarefas mais comuns do dia a dia. Clique em uma pergunta para ver a resposta.</p>
+
+<div class="accordion" id="acordeaoAjuda">
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1">
+                Como cadastro uma pessoa que contribui (dizimista/ofertante)?
+            </button>
+        </h2>
+        <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <ol>
+                    <li>No menu, clique em <strong>Contribuintes</strong>.</li>
+                    <li>Clique no botão <strong>+ Novo contribuinte</strong>.</li>
+                    <li>Preencha o nome, o bairro (opcional) e a data da primeira contribuição (no formato DD/MM/AAAA, por exemplo 15/03/2024).</li>
+                    <li>Clique em <strong>Salvar</strong>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2">
+                Como registro uma entrada (dízimo, oferta, doação)?
+            </button>
+        </h2>
+        <div id="p2" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <ol>
+                    <li>No menu, clique em <strong>Lançamentos</strong>.</li>
+                    <li>Clique no botão <strong>+ Novo lançamento</strong>.</li>
+                    <li>Escolha a categoria (ex.: Dízimo, Oferta, Doação) — o sistema já sabe que é uma entrada de dinheiro.</li>
+                    <li>Informe o valor (pode usar vírgula, ex.: 150,00) e a data.</li>
+                    <li>Se quiser, selecione o contribuinte relacionado.</li>
+                    <li>Clique em <strong>Salvar</strong>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3">
+                Como registro uma saída (uma conta paga, uma despesa)?
+            </button>
+        </h2>
+        <div id="p3" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>O passo a passo é o mesmo de uma entrada, mas escolhendo uma categoria de despesa (ex.: Despesas Fixas, Despesas Variáveis). Não é necessário escolher um contribuinte nesse caso.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p4">
+                Como vejo o saldo de um mês?
+            </button>
+        </h2>
+        <div id="p4" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>A tela <strong>Início</strong> já mostra o saldo do mês atual. Para ver outro mês, vá em <strong>Lançamentos</strong> e use os filtros de mês e ano no topo da página — os cartões de Entradas, Saídas e Saldo se atualizam de acordo com o período escolhido.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p5">
+                Como vejo relatórios do ano ou por categoria?
+            </button>
+        </h2>
+        <div id="p5" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>No menu, clique em <strong>Relatórios</strong>. Lá você encontra:</p>
+                <ul>
+                    <li><strong>Relatório de arrecadação</strong>: entradas e saídas mês a mês, durante o ano inteiro.</li>
+                    <li><strong>Relatório por categoria</strong>: quanto entrou e saiu em cada categoria (dízimo, oferta, despesas etc.) em um mês.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p6">
+                Como exporto os lançamentos para o Excel?
+            </button>
+        </h2>
+        <div id="p6" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>Na tela de <strong>Lançamentos</strong> (ou no relatório por categoria), ajuste os filtros de mês, ano, tipo e categoria como desejar e clique no botão verde <strong>Exportar CSV</strong>. Um arquivo será baixado e pode ser aberto diretamente no Excel ou Google Planilhas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p7">
+                Cadastrei algo errado. Como corrijo ou removo?
+            </button>
+        </h2>
+        <div id="p7" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>Em qualquer listagem (Contribuintes, Lançamentos ou Categorias), use o botão <strong>Editar</strong> para corrigir os dados ou <strong>Remover</strong> para excluir. O sistema sempre pede uma confirmação antes de remover algo, para evitar remoções por engano.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p8">
+                Esqueci minha senha ou preciso de um novo acesso, o que faço?
+            </button>
+        </h2>
+        <div id="p8" class="accordion-collapse collapse" data-bs-parent="#acordeaoAjuda">
+            <div class="accordion-body">
+                <p>Por segurança, o sistema não tem uma tela pública de cadastro/redefinição de senha. Procure a pessoa responsável pela administração técnica do sistema para criar um novo acesso ou redefinir sua senha.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
