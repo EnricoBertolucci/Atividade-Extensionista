@@ -1,15 +1,21 @@
 import os
+from datetime import date
+from decimal import Decimal
 
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_login import login_required
+from sqlalchemy import extract
 
 from src.auth import login_manager
 from src.models import db
+from src.models.contribuinte import Contribuinte
+from src.models.lancamento import Lancamento
 from src.routes.auth import auth_bp
 from src.routes.categoria import categoria_bp
 from src.routes.contribuinte import contribuinte_bp
 from src.routes.lancamento import lancamento_bp
+from src.routes.relatorio import relatorio_bp
 from src.seed import seed_categorias_padrao
 
 BASE_DIR = os.path.dirname(__file__)
@@ -31,6 +37,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(contribuinte_bp)
 app.register_blueprint(categoria_bp)
 app.register_blueprint(lancamento_bp)
+app.register_blueprint(relatorio_bp)
 
 with app.app_context():
     db.create_all()
@@ -40,7 +47,25 @@ with app.app_context():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    hoje = date.today()
+    lancamentos_mes = Lancamento.query.filter(
+        extract("month", Lancamento.data) == hoje.month,
+        extract("year", Lancamento.data) == hoje.year,
+    ).all()
+    total_entradas = sum((l.valor for l in lancamentos_mes if l.tipo == "entrada"), Decimal("0"))
+    total_saidas = sum((l.valor for l in lancamentos_mes if l.tipo == "saida"), Decimal("0"))
+    contribuintes_ativos = Contribuinte.query.filter_by(ativo=True).count()
+
+    return render_template(
+        "index.html",
+        mes_atual=hoje.month,
+        ano_atual=hoje.year,
+        nome_mes_atual=hoje.strftime("%m/%Y"),
+        total_entradas=total_entradas,
+        total_saidas=total_saidas,
+        saldo=total_entradas - total_saidas,
+        contribuintes_ativos=contribuintes_ativos,
+    )
 
 
 if __name__ == "__main__":

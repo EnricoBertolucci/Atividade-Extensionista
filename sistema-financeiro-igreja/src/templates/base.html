@@ -15,6 +15,7 @@
                 <a class="nav-link text-white d-inline me-3" href="{{ url_for('contribuinte.listar') }}">Contribuintes</a>
                 <a class="nav-link text-white d-inline me-3" href="{{ url_for('lancamento.listar') }}">Lançamentos</a>
                 <a class="nav-link text-white d-inline me-3" href="{{ url_for('categoria.listar') }}">Categorias</a>
+                <a class="nav-link text-white d-inline me-3" href="{{ url_for('relatorio.arrecadacao') }}">Relatórios</a>
                 <span class="navbar-text text-white me-3">Olá, {{ current_user.nome }}</span>
                 <a class="btn btn-outline-light btn-sm" href="{{ url_for('auth.logout') }}">Sair</a>
             </div>

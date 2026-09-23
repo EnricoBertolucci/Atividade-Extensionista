@@ -1,6 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Bem-vindo(a), {{ current_user.nome }}!</h1>
-<p class="text-muted">Projeto em construção. As funcionalidades de cadastro, lançamentos e relatórios serão adicionadas nas próximas etapas.</p>
+<h1 class="mb-1">Bem-vindo(a), {{ current_user.nome }}!</h1>
+<p class="text-muted">Resumo financeiro do mês {{ nome_mes_atual }}.</p>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card"><div class="card-body">
+            <h6 class="text-muted">Entradas do mês</h6>
+            <p class="fs-4 text-success mb-0">R$ {{ "%.2f"|format(total_entradas)|replace(".", ",") }}</p>
+        </div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card"><div class="card-body">
+            <h6 class="text-muted">Saídas do mês</h6>
+            <p class="fs-4 text-danger mb-0">R$ {{ "%.2f"|format(total_saidas)|replace(".", ",") }}</p>
+        </div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card"><div class="card-body">
+            <h6 class="text-muted">Saldo do mês</h6>
+            <p class="fs-4 mb-0">R$ {{ "%.2f"|format(saldo)|replace(".", ",") }}</p>
+        </div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card"><div class="card-body">
+            <h6 class="text-muted">Contribuintes ativos</h6>
+            <p class="fs-4 mb-0">{{ contribuintes_ativos }}</p>
+        </div></div>
+    </div>
+</div>
+
+<div class="d-flex gap-2">
+    <a href="{{ url_for('relatorio.arrecadacao') }}" class="btn btn-primary">Relatório de arrecadação</a>
+    <a href="{{ url_for('relatorio.categoria') }}" class="btn btn-outline-primary">Relatório por categoria</a>
+    <a href="{{ url_for('lancamento.novo') }}" class="btn btn-outline-secondary">Novo lançamento</a>
+</div>
 {% endblock %}

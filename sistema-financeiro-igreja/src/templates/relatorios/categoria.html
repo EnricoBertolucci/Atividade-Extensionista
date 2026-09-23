@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Relatório por categoria — Sistema Financeiro da Igreja{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Relatório por categoria</h1>
+    <a href="{{ url_for('relatorio.arrecadacao') }}" class="btn btn-outline-primary">Ver arrecadação anual</a>
+</div>
+
+<form method="get" class="row g-2 mb-3 align-items-end">
+    <div class="col-auto">
+        <label class="form-label">Mês</label>
+        <select name="mes" class="form-select">
+            {% for m in range(1, 13) %}
+            <option value="{{ m }}" {% if m == mes %}selected{% endif %}>{{ "%02d"|format(m) }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-auto">
+        <label class="form-label">Ano</label>
+        <input type="number" name="ano" value="{{ ano }}" class="form-control" style="width: 110px;">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
+    </div>
+    <div class="col-auto">
+        <a href="{{ url_for('relatorio.exportar_csv', mes=mes, ano=ano) }}" class="btn btn-outline-success">Exportar CSV</a>
+    </div>
+</form>
+
+<p class="text-muted">Período: {{ nome_mes }}/{{ ano }} — Entradas: R$ {{ "%.2f"|format(total_entradas)|replace(".", ",") }} · Saídas: R$ {{ "%.2f"|format(total_saidas)|replace(".", ",") }}</p>
+
+{% if linhas %}
+<div class="card mb-4" style="max-width: 500px;">
+    <div class="card-body">
+        <canvas id="graficoCategoria"></canvas>
+    </div>
+</div>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Tipo</th>
+            <th class="text-end">Entradas</th>
+            <th class="text-end">Saídas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for linha in linhas %}
+        <tr>
+            <td>{{ linha.categoria.nome }}</td>
+            <td>{{ "Entrada" if linha.categoria.tipo == "entrada" else "Saída" }}</td>
+            <td class="text-end">R$ {{ "%.2f"|format(linha.entradas)|replace(".", ",") }}</td>
+            <td class="text-end">R$ {{ "%.2f"|format(linha.saidas)|replace(".", ",") }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+    const ctx = document.getElementById('graficoCategoria');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: {{ linhas | map(attribute='categoria') | map(attribute='nome') | list | tojson }},
+            datasets: [{
+                data: {{ linhas | map(attribute='entradas') | map('float') | list | tojson }},
+                backgroundColor: ['#198754', '#0d6efd', '#ffc107', '#fd7e14', '#6f42c1', '#20c997', '#dc3545', '#6c757d'],
+            }],
+        },
+    });
+</script>
+{% else %}
+<p class="text-muted">Nenhum lançamento encontrado para o período selecionado.</p>
+{% endif %}
+{% endblock %}

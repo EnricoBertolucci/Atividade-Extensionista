@@ -41,6 +41,9 @@
     <div class="col-auto">
         <button type="submit" class="btn btn-outline-secondary">Filtrar</button>
     </div>
+    <div class="col-auto">
+        <a href="{{ url_for('relatorio.exportar_csv', mes=mes, ano=ano, tipo=tipo, categoria_id=categoria_id) }}" class="btn btn-outline-success">Exportar CSV</a>
+    </div>
 </form>
 
 <div class="row mb-4">
