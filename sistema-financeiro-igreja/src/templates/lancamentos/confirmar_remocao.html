@@ -11,6 +11,7 @@
     Essa ação não pode ser desfeita.
 </p>
 <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <button type="submit" class="btn btn-danger">Sim, remover</button>
     <a href="{{ url_for('lancamento.listar') }}" class="btn btn-outline-secondary">Cancelar</a>
 </form>

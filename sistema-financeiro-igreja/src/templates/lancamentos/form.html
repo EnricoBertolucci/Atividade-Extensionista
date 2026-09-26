@@ -6,6 +6,7 @@
 <h1>{{ "Editar" if lancamento else "Novo" }} lançamento</h1>
 
 <form method="post" class="col-md-6">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="mb-3">
         <label class="form-label" for="categoria_id">Categoria</label>
         <select id="categoria_id" name="categoria_id" class="form-select" required>

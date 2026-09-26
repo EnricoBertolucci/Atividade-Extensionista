@@ -5,6 +5,7 @@ from decimal import Decimal
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_login import login_required
+from flask_wtf import CSRFProtect
 from sqlalchemy import extract
 
 from src.auth import login_manager
@@ -38,6 +39,7 @@ def create_app(config=None):
     CORS(app)
     db.init_app(app)
     login_manager.init_app(app)
+    CSRFProtect(app)
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(contribuinte_bp)

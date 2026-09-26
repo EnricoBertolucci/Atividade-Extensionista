@@ -6,6 +6,7 @@
 <h1>{{ "Editar" if categoria else "Nova" }} categoria</h1>
 
 <form method="post" class="col-md-6">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="mb-3">
         <label class="form-label" for="nome">Nome</label>
         <input type="text" id="nome" name="nome" class="form-control" value="{{ valores.get('nome', '') }}" required autofocus>
