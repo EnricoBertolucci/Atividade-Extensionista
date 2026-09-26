@@ -31,6 +31,7 @@
                 </ul>
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <span class="navbar-text text-white">Olá, {{ current_user.nome }}</span>
+                    <a class="btn btn-outline-light" href="{{ url_for('auth.alterar_senha') }}">Alterar senha</a>
                     <a class="btn btn-outline-light" href="{{ url_for('auth.logout') }}">Sair</a>
                 </div>
             </div>

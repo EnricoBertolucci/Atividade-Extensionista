@@ -4,3 +4,6 @@
 
 # O restante das regras de ignore (venv, banco local, cache) fica no
 # .gitignore específico dentro de sistema-financeiro-igreja/
+
+# Vídeo de evidência da entrega (arquivo grande; o link do YouTube já está no trabalho)
+/IMG_1202.MOV

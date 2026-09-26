@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Alterar senha{% endblock %}
+
+{% block content %}
+<h1>Alterar senha</h1>
+
+<form method="post" class="col-md-6">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="mb-3">
+        <label class="form-label" for="senha_atual">Senha atual</label>
+        <input type="password" id="senha_atual" name="senha_atual" class="form-control"
+               autocomplete="current-password" required autofocus>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="nova_senha">Nova senha</label>
+        <input type="password" id="nova_senha" name="nova_senha" class="form-control"
+               autocomplete="new-password" minlength="{{ tamanho_minimo }}" required>
+        <div class="form-text">Use pelo menos {{ tamanho_minimo }} caracteres.</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="confirmacao">Confirme a nova senha</label>
+        <input type="password" id="confirmacao" name="confirmacao" class="form-control"
+               autocomplete="new-password" minlength="{{ tamanho_minimo }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar nova senha</button>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+{% endblock %}
